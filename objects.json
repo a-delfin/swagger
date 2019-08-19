@@ -1,0 +1,76 @@
+  "components": {
+    "schemas": {
+      "Car": {
+        "title": "Car",
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          },
+          "engine": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AtmosphericEngine"
+              },
+              {
+                "$ref": "#/components/schemas/ElectricEngine"
+              }
+            ]
+          }
+        }
+      },
+      "EngineResponse": {
+        "title": "EngineResponse",
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AtmosphericEngine"
+          },
+          {
+            "$ref": "#/components/schemas/ElectricEngine"
+          }
+        ]
+      },
+      "Engine": {
+        "title": "Engine",
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string"
+          }
+        }
+      },
+      "AtmosphericEngine": {
+        "title": "AtmosphericEngine",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Engine"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "cubicCapacity": {
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      },
+      "ElectricEngine": {
+        "title": "ElectricEngine",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Engine"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "autonomy": {
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
