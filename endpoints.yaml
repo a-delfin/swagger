@@ -7,7 +7,7 @@ info:
     email: API@eulerhermes.com
 
 servers:
-  - url: https://gitlab.eulerhermes.com/API_Governance/API_Specification/blob/master/Misc/
+  - url: https://github.com/a-delfin/swagger/blob/master/
 
 tags:
   - name: Cars
