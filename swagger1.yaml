@@ -1,0 +1,78 @@
+openapi: '3.0.0'
+info:
+  description: The REST/JSON API for transversal reference data resource
+  version: 1.0.0
+  title: Polymorphism
+  contact:
+    email: API@eulerhermes.com
+
+tags:
+  - name: Cars
+
+paths:
+  /motors:
+    get:
+      summary: Return the list of the Group's lines of Business
+      tags:
+        - Cars
+      responses:
+        '200':
+          description: xxxx
+          content:
+            'application/json':
+              schema:
+                $ref: '#/components/schemas/EngineResponse1'
+                
+  /cars:
+    post:
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car1'
+      responses:
+        '200':
+          description: xxxx
+          
+components:
+  schemas:
+    Car1:
+      title: Car
+      type: object
+      properties:
+        model:
+          type: string  
+        engine:
+          oneOf:
+            - $ref: '#/components/schemas/AtmosphericEngine1'
+            - $ref: '#/components/schemas/ElectricEngine1'
+    EngineResponse1:
+      title: EngineResponse
+      type: object
+      oneOf:
+        - $ref: '#/components/schemas/AtmosphericEngine1'
+        - $ref: '#/components/schemas/ElectricEngine1'
+    Engine1:
+      title: Engine
+      type: object
+      properties:
+        model:
+          type: string    
+    AtmosphericEngine1:
+      title: AtmosphericEngine
+      allOf:
+        - $ref: '#/components/schemas/Engine1'
+        - type: object
+          properties:
+            cubicCapacity:
+              type: integer
+    ElectricEngine1:
+      title: ElectricEngine
+      allOf:
+        - $ref: '#/components/schemas/Engine1'
+        - type: object
+          properties:
+            autonomy:
+              type: integer
