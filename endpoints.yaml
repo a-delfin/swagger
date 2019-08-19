@@ -1,0 +1,40 @@
+openapi: '3.0.0'
+info:
+  description: The REST/JSON API for transversal reference data resource
+  version: 0.0.16
+  title: Polymorphism
+  contact:
+    email: API@eulerhermes.com
+
+servers:
+  - url: https://gitlab.eulerhermes.com/API_Governance/API_Specification/blob/master/Misc/
+
+tags:
+  - name: Cars
+
+paths:
+  /motors:
+    get:
+      summary: Return the list of the Group's lines of Business
+      tags:
+        - Cars
+      responses:
+        '200':
+          description: xxxx
+          content:
+            'application/json':
+              schema:
+                $ref: 'objects.json#/components/schemas/EngineResponse'
+                
+  /cars:
+    post:
+      tags:
+      - Cars
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: 'objects.json#/components/schemas/Car'
+      responses:
+        '200':
+          description: xxxx
